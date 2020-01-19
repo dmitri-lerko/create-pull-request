@@ -94,7 +94,7 @@ def set_committer_author(repo, committer, author):
 
 # Get required environment variables
 github_token = os.environ["GITHUB_TOKEN"]
-github_repository = os.environ["GITHUB_REPOSITORY"]
+github_repository = os.environ["GITHUB_REPOSITORY_OVERRIDE"]
 # Get environment variables with defaults
 path = os.getenv("CPR_PATH", os.getcwd())
 branch = os.getenv("CPR_BRANCH", DEFAULT_BRANCH)
