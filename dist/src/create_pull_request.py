@@ -29,11 +29,11 @@ DEFAULT_COMMITTER = "GitHub <noreply@github.com>"
 DEFAULT_AUTHOR = (
     "github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>"
 )
-DEFAULT_COMMIT_MESSAGE = "[create-pull-request] automated change"
 DEFAULT_TITLE = "Changes by create-pull-request action"
 DEFAULT_BRANCH = "create-pull-request/patch"
 branch = os.getenv("CPR_BRANCH", DEFAULT_BRANCH)
 DEFAULT_TITLE = os.getenv("APPLICATION_NAME", "") + " " + repo.git.rev_parse("--short", "HEAD") + " " + os.getenv("ENVIRONMENT_NAME", "")
+DEFAULT_COMMIT_MESSAGE = "Bump version of " + DEFAULT_TITLE
 DEFAULT_BODY = (
     "Automated changes by "
     + "[create-pull-request](https://github.com/peter-evans/create-pull-request) GitHub action"
