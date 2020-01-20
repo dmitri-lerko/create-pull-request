@@ -9,6 +9,18 @@ import os
 import sys
 import time
 
+# Get required environment variables
+github_token = os.environ["GITHUB_TOKEN"]
+github_repository = os.environ["GITHUB_REPOSITORY_OVERRIDE"]
+# Get environment variables with defaults
+path = os.getenv("CPR_PATH", os.getcwd())
+# Get environment variables with a default of 'None'
+committer = os.environ.get("CPR_COMMITTER")
+author = os.environ.get("CPR_AUTHOR")
+base = os.environ.get("CPR_BASE")
+
+# Set the repo path
+repo = Repo(path)
 
 # Default the committer and author to the GitHub Actions bot
 DEFAULT_COMMITTER = "GitHub <noreply@github.com>"
@@ -17,12 +29,15 @@ DEFAULT_AUTHOR = (
 )
 DEFAULT_COMMIT_MESSAGE = "[create-pull-request] automated change"
 DEFAULT_TITLE = "Changes by create-pull-request action"
-DEFAULT_TITLE = os.getenv("APPLICATION_NAME", "") + " " + "{}-{}".format(os.getenv("CPR_BRANCH", ""), repo.git.rev_parse("--short", "HEAD")) + " " + os.getenv("ENVIRONMENT_NAME", "")
+DEFAULT_BRANCH = "create-pull-request/patch"
+branch = os.getenv("CPR_BRANCH", DEFAULT_BRANCH)
+DEFAULT_TITLE = os.getenv("APPLICATION_NAME", "") + " " + "{}-{}".format(branch, repo.git.rev_parse("--short", "HEAD")) + " " + os.getenv("ENVIRONMENT_NAME", "")
 DEFAULT_BODY = (
     "Automated changes by "
     + "[create-pull-request](https://github.com/peter-evans/create-pull-request) GitHub action"
 )
-DEFAULT_BRANCH = "create-pull-request/patch"
+
+commit_message = os.getenv("CPR_COMMIT_MESSAGE", DEFAULT_COMMIT_MESSAGE)
 
 
 def get_git_config_value(repo, name):
@@ -93,20 +108,6 @@ def set_committer_author(repo, committer, author):
     print(f"Configured git author as '{author_name} <{author_email}>'")
 
 
-# Get required environment variables
-github_token = os.environ["GITHUB_TOKEN"]
-github_repository = os.environ["GITHUB_REPOSITORY_OVERRIDE"]
-# Get environment variables with defaults
-path = os.getenv("CPR_PATH", os.getcwd())
-branch = os.getenv("CPR_BRANCH", DEFAULT_BRANCH)
-commit_message = os.getenv("CPR_COMMIT_MESSAGE", DEFAULT_COMMIT_MESSAGE)
-# Get environment variables with a default of 'None'
-committer = os.environ.get("CPR_COMMITTER")
-author = os.environ.get("CPR_AUTHOR")
-base = os.environ.get("CPR_BASE")
-
-# Set the repo path
-repo = Repo(path)
 
 # Determine if the checked out ref is a valid base for a pull request
 # The action needs the checked out HEAD ref to be a branch
