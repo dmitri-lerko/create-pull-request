@@ -9,6 +9,8 @@ import os
 import sys
 import time
 
+print(os.environ.get('HOME','CPR_ASSIGNEES')
+
 # Get required environment variables
 github_token = os.environ["GITHUB_TOKEN"]
 github_repository = os.environ["GITHUB_REPOSITORY_OVERRIDE"]
