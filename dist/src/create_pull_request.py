@@ -17,7 +17,7 @@ DEFAULT_AUTHOR = (
 )
 DEFAULT_COMMIT_MESSAGE = "[create-pull-request] automated change"
 DEFAULT_TITLE = "Changes by create-pull-request action"
-DEFAULT_TITLE = os.getenv("APPLICATION_NAME", "") + " " + "{}-{}".format(branch, repo.git.rev_parse("--short", "HEAD")) + " " + os.getenv("ENVIRONMENT_NAME", "")
+DEFAULT_TITLE = os.getenv("APPLICATION_NAME", "") + " " + "{}-{}".format(os.getenv("CPR_BRANCH", ""), repo.git.rev_parse("--short", "HEAD")) + " " + os.getenv("ENVIRONMENT_NAME", "")
 DEFAULT_BODY = (
     "Automated changes by "
     + "[create-pull-request](https://github.com/peter-evans/create-pull-request) GitHub action"
