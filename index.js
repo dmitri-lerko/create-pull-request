@@ -50,7 +50,7 @@ async function run() {
     if (inputs.title) process.env.CPR_TITLE = inputs.title;
     if (inputs.body) process.env.CPR_BODY = inputs.body;
     if (inputs.labels) process.env.CPR_LABELS = inputs.labels;
-    if (inputs.assignees) process.env.CPR_ASSIGNEES = inputs.assignees;
+    if (inputs.assignees) process.env.CPR_ASSIGNEES = process.env.GITHUB_AUTHOR;
     if (inputs.reviewers) process.env.CPR_REVIEWERS = inputs.reviewers;
     if (inputs.teamReviewers) process.env.CPR_TEAM_REVIEWERS = inputs.teamReviewers;
     if (inputs.milestone) process.env.CPR_MILESTONE = inputs.milestone;
