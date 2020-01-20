@@ -9,7 +9,7 @@ import os
 import sys
 import time
 
-print(os.environ.get('HOME','CPR_ASSIGNEES'))
+print(os.environ.get('CPR_ASSIGNEES',''))
 
 # Get required environment variables
 github_token = os.environ["GITHUB_TOKEN"]
@@ -32,7 +32,7 @@ DEFAULT_AUTHOR = (
 DEFAULT_TITLE = "Changes by create-pull-request action"
 DEFAULT_BRANCH = "create-pull-request/patch"
 branch = os.getenv("CPR_BRANCH", DEFAULT_BRANCH)
-DEFAULT_TITLE = os.getenv("APPLICATION_NAME", "") + " " + repo.git.rev_parse("--short", "HEAD") + " " + os.getenv("ENVIRONMENT_NAME", "")
+DEFAULT_TITLE = os.getenv("APPLICATION_NAME", "") + " " + repo.git.rev_parse("--short", "HEAD") + " to " + os.getenv("ENVIRONMENT_NAME", "")
 DEFAULT_COMMIT_MESSAGE = "Bump version of " + DEFAULT_TITLE
 DEFAULT_BODY = (
     "Automated changes by "
