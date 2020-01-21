@@ -9,10 +9,8 @@ import os
 import sys
 import time
 
-print("start")
-print(os.environ.get('CPR_ASSIGNEES',''))
 print(os.environ.get('GITHUB_ACTOR',''))
-print("end")
+
 # Get required environment variables
 github_token = os.environ["GITHUB_TOKEN"]
 github_repository = os.environ["GITHUB_REPOSITORY_OVERRIDE"]
@@ -202,7 +200,7 @@ if result["action"] in ["created", "updated"]:
         title,
         body,
         os.environ.get("CPR_LABELS"),
-        os.environ.get("CPR_ASSIGNEES"),
+        os.environ.get("GITHUB_ACTOR"),
         os.environ.get("CPR_MILESTONE"),
         os.environ.get("CPR_REVIEWERS"),
         os.environ.get("CPR_TEAM_REVIEWERS"),

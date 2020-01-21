@@ -29,7 +29,6 @@ async function run() {
       title: core.getInput("title"),
       body: core.getInput("body"),
       labels: core.getInput("labels"),
-      assignees: core.getInput("assignees"),
       reviewers: core.getInput("reviewers"),
       teamReviewers: core.getInput("team-reviewers"),
       milestone: core.getInput("milestone"),
@@ -50,7 +49,6 @@ async function run() {
     if (inputs.title) process.env.CPR_TITLE = inputs.title;
     if (inputs.body) process.env.CPR_BODY = inputs.body;
     if (inputs.labels) process.env.CPR_LABELS = inputs.labels;
-    process.env.CPR_ASSIGNEES = process.env.GITHUB_ACTOR;
     if (inputs.reviewers) process.env.CPR_REVIEWERS = inputs.reviewers;
     if (inputs.teamReviewers) process.env.CPR_TEAM_REVIEWERS = inputs.teamReviewers;
     if (inputs.milestone) process.env.CPR_MILESTONE = inputs.milestone;
